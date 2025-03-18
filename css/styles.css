@@ -1,0 +1,60 @@
+/* Estilos adicionales que complementan Tailwind */
+
+/* Estilos para encabezados con contraste */
+.header-contrast h1 {
+    color: #ff6b6b;
+    font-size: 2.5rem;
+    border-bottom: 2px solid #ff6b6b;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.header-contrast h2 {
+    color: #5f27cd;
+    font-size: 2rem;
+    border-left: 4px solid #5f27cd;
+    padding-left: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.header-contrast h3 {
+    color: #1abc9c;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilos para la vista previa */
+#preview h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+}
+
+#preview h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+#preview h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+#preview ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#preview ol {
+    list-style-type: decimal;
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#preview li {
+    margin-bottom: 0.25rem;
+}
