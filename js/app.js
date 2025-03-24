@@ -1,3 +1,7 @@
+/**
+ * Archivo principal que coordina la funcionalidad del editor
+ */
+
 document.addEventListener('DOMContentLoaded', function() {
     const editor = document.getElementById('editor');
     const preview = document.getElementById('preview');
@@ -5,31 +9,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const previewBtnMobile = document.getElementById('previewBtnMobile');
     const contrastBtn = document.getElementById('contrastBtn');
     const contrastBtnMobile = document.getElementById('contrastBtnMobile');
-    
+    const formatBtn = document.getElementById('formatBtn');
+    const formatBtnMobile = document.getElementById('formatBtnMobile');
+
     let contrastActive = false;
 
     // Función para convertir Markdown a HTML usando regex
     function markdownToHtml(markdown) {
+        // Procesar bloques de código primero (blocks.js)
+        let html = window.blockFunctions.processCodeBlocks(markdown);
+        
+        // Procesar listas numeradas (lists.js)
+        html = window.listFunctions.convertOrderedLists(html);
+        
         // Convertir encabezados (# Título)
-        let html = markdown.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+        html = html.replace(/^# (.+)$/gm, '<h1>$1</h1>');
         html = html.replace(/^## (.+)$/gm, '<h2>$1</h2>');
         html = html.replace(/^### (.+)$/gm, '<h3>$1</h3>');
         
         // Convertir listas sin orden (* Item)
         html = html.replace(/^\* (.+)$/gm, '<li>$1</li>');
         html = html.replace(/(<li>.+<\/li>\n)+/g, function(match) {
-            return '<ul>' + match + '</ul>';
-        });
-        
-        // Convertir listas ordenadas (1. Item)
-        html = html.replace(/^(\d+)\. (.+)$/gm, '<li>$2</li>');
-        html = html.replace(/(<li>.+<\/li>\n)+/g, function(match) {
-            // Verificamos si ya es parte de una lista sin orden
-            if (match.includes('<ul>')) {
+            if (match.includes('<ol>')) {
                 return match;
             }
-            return '<ol>' + match + '</ol>';
+            return '<ul>' + match + '</ul>';
         });
+
+        // Convertir negrita y cursiva (format.js)
+        html = window.formatFunctions.applyBoldItalic(html);
         
         // Convertir saltos de línea
         html = html.replace(/\n/g, '<br>');
@@ -47,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const htmlContent = markdownToHtml(markdownText);
         preview.innerHTML = htmlContent;
         
-        // Si el contraste está activo, aplicarlo
         if (contrastActive) {
             applyContrast();
         }
@@ -82,11 +89,38 @@ document.addEventListener('DOMContentLoaded', function() {
         preview.classList.remove('header-contrast');
     }
 
-    // Event listeners para los botones
+    // Función para aplicar formato de negrita/cursiva (format.js)
+    function toggleFormat() {
+        const formattedText = window.formatFunctions.toggleTextFormat(editor);
+        editor.value = formattedText;
+        generatePreview();
+    }
+
+    // Event listeners
+    editor.addEventListener('input', function() {
+        setTimeout(generatePreview, 300);
+    });
+
     previewBtn.addEventListener('click', generatePreview);
     previewBtnMobile.addEventListener('click', generatePreview);
     contrastBtn.addEventListener('click', toggleContrast);
     contrastBtnMobile.addEventListener('click', toggleContrast);
+    formatBtn.addEventListener('click', toggleFormat);
+    formatBtnMobile.addEventListener('click', toggleFormat);
+
+    // Detectar atajos de teclado
+editor.addEventListener('keydown', function(event) {
+    if (event.ctrlKey || event.metaKey) {
+        if (event.key === 'b' || event.key === 'B') {
+            event.preventDefault();
+            window.formatFunctions.toggleTextFormat(editor, 'bold');
+        } else if (event.key === 'i' || event.key === 'I') {
+            event.preventDefault();
+            window.formatFunctions.toggleTextFormat(editor, 'italic');
+        }
+    }
+});
+
 
     // Generar preview al cargar
     generatePreview();

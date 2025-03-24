@@ -18,6 +18,9 @@
                 <button id="contrastBtn" class="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-100 transition-colors font-medium">
                     Contrastar Encabezados
                 </button>
+                <button id="formatBtn" class="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-100 transition-colors font-medium">
+                    Aplicar Formato
+                </button>
             </div>
         </div>
     </header>
@@ -39,6 +42,13 @@ Lista ordenada:
 1. Primer elemento
 2. Segundo elemento
 3. Tercer elemento
+
+Bloque de código:
+```
+function saludar() {
+    console.log("¡Hola mundo!");
+}
+```
             </textarea>
         </section>
 
@@ -52,15 +62,22 @@ Lista ordenada:
 
     <footer class="bg-blue-600 text-white p-4 fixed bottom-0 left-0 right-0 md:hidden flex justify-center">
         <div class="flex gap-2">
-            <button id="previewBtnMobile" class="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-100 transition-colors font-medium">
-                Generar Vista Previa
+            <button id="previewBtnMobile" class="bg-white text-blue-600 px-4 py-1 rounded hover:bg-blue-100 transition-colors font-medium text-sm">
+                Vista Previa
             </button>
-            <button id="contrastBtnMobile" class="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-100 transition-colors font-medium">
-                Contrastar Encabezados
+            <button id="contrastBtnMobile" class="bg-white text-blue-600 px-4 py-1 rounded hover:bg-blue-100 transition-colors font-medium text-sm">
+                Contraste
+            </button>
+            <button id="formatBtnMobile" class="bg-white text-blue-600 px-4 py-1 rounded hover:bg-blue-100 transition-colors font-medium text-sm">
+                Formato
             </button>
         </div>
     </footer>
 
+    <!-- Scripts modulares -->
+    <script src="js/format.js"></script>
+    <script src="js/lists.js"></script>
+    <script src="js/blocks.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
