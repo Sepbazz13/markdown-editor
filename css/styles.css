@@ -1,60 +1,79 @@
-/* Estilos adicionales que complementan Tailwind */
-
-/* Estilos para encabezados con contraste */
-.header-contrast h1 {
-    color: #ff6b6b;
-    font-size: 2.5rem;
-    border-bottom: 2px solid #ff6b6b;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #70a1eb;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
 }
 
-.header-contrast h2 {
-    color: #5f27cd;
-    font-size: 2rem;
-    border-left: 4px solid #5f27cd;
-    padding-left: 0.75rem;
-    margin-bottom: 0.75rem;
-}
-
-.header-contrast h3 {
-    color: #1abc9c;
-    font-size: 1.5rem;
-    text-decoration: underline;
-    margin-bottom: 0.5rem;
-}
-
-/* Estilos para la vista previa */
-#preview h1 {
-    font-size: 2rem;
+.header {
+    width: 100%;
+    text-align: left;
+    font-size: 24px;
     font-weight: bold;
-    margin-bottom: 0.75rem;
+    padding: 10px 20px;
 }
 
-#preview h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+.container {
+    width: 50%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-#preview h3 {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+textarea {
+    resize: none;
+    font-size: 16px;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    transition: border 0.3s ease-in-out;
+    width: 100%;
+    height: 150px;
 }
 
-#preview ul {
-    list-style-type: disc;
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
+textarea:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
 }
 
-#preview ol {
-    list-style-type: decimal;
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
+#preview {
+    display: none; /* Eliminado el bloque extra */
 }
 
-#preview li {
-    margin-bottom: 0.25rem;
+button {
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
 }
